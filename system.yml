@@ -1,0 +1,18 @@
+---
+- hosts: all
+
+  tasks:
+
+  - name: Installiere sudo
+    ansible.builtin.package:
+      name: sudo
+      state: present
+    become: true
+    become_user: root  
+
+  - name: upgrade all packages
+    yum: name=* state=latest
+    become: true
+    become_user: root
+    when: ansible_distribution == "CentOS" 
+
