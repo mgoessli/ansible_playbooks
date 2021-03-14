@@ -5,5 +5,5 @@
 # erstellt: 14.03.2021
 
 cd /home/ansible/cmdb
-ansible -m setup -i /etc/ansible/hosts /out /all
+ansible -m setup -i /etc/ansible/hosts --tree out/ all
 ansible-cmd /home/ansible/cmdb/out > /var/www/index.html
