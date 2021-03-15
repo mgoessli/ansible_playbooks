@@ -1,0 +1,14 @@
+---
+- hosts: nodes 
+  tasks:
+    - name: scan_port_80
+      wait_for:
+        port: 80
+        timeout: 5
+        state: present
+      register: web
+      ignore_errors: true
+    - local_action:
+        module: copy
+        content: "{{inventory_hostname}};{{web.state}}"
+        dest: scan_port80_out.txt 
