@@ -1,0 +1,9 @@
+---
+- hosts: konrad 
+  gather_facts: yes
+  become: yes
+
+  tasks:
+
+      - name: Reboot the server.
+        reboot:

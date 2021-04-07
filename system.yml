@@ -15,4 +15,31 @@
     become: true
     become_user: root
     when: ansible_distribution == "CentOS" 
-
+  - name: Update apt-get repo and cache
+    apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+    apt:
+      name: "*"
+      state: latest
+      name: thunderbird
+      name: sshfs
+      name: filezilla
+      name: snapd
+      name: git 
+      name: keepass2
+    become: true
+    become_user: root
+    when: ansible_distribution == 'Ubuntu'
+  - name: Clean unwanted olderstuff
+    apt:
+      autoremove: yes
+      purge: yes
+    become: true
+    become_user: root
+    when: ansible_distribution == 'Ubuntu'
+  - name: snap
+    snap: 
+      name: ao
+      name: skype
+    become: true
+    become_user: root
+    when: ansible_distribution == 'Ubuntu'

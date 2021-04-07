@@ -1,0 +1,33 @@
+---
+- hosts: konrad 
+  gather_facts: yes
+  become: yes
+
+  tasks:
+
+    # Use a block to perform tasks conditionally—only if running Ubuntu 12.04.
+    - block:
+
+
+      # Now would be a good time to take a backup if you can trigger an
+      # automated backup!
+
+      - name: Remove the EOL message of the day if one exists.
+        file:
+          path: "{{ item }}"
+          state: absent
+        with_items:
+          - /etc/update-motd.d/99-esm
+          - /run/motd.dynamic
+
+      - name: Upgrade all packages to the latest version
+        apt: update_cache=yes upgrade=full
+
+      - name: Ensure update-manager-core is installed.
+        apt: name=update-manager-core state=present
+
+      - name: Run do-release-upgrade non-interactively.
+        command: do-release-upgrade -f DistUpgradeViewNonInteractive
+
+      - name: Reboot the server.
+        reboot:
