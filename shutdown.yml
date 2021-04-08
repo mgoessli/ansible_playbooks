@@ -1,7 +1,7 @@
 ---
 # reboot.yml
 
-- hosts: tux
+- hosts: konrad
 
   tasks:
     - name: reboot host
