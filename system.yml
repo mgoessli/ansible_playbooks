@@ -10,6 +10,37 @@
     become: true
     become_user: root  
 
+  - name: erstellen von /appl
+    file:
+      path: /appl
+      state: directory
+    become: true
+    become_user: root
+
+  - name: erstellen von /appl/internet
+    file:
+      path: /appl/internet
+      state: directory
+    become: true
+    become_user: root
+
+
+  - name: erstellen von /appl/office
+    file:
+      path: /appl
+      state: directory
+    become: true
+    become_user: root
+
+
+  - name: erstellen von /appl/Artefakte/data
+    file:
+      path: /appl/Artefakte/data
+      state: directory
+    become: true
+    become_user: root
+
+
   - name: upgrade all packages
     yum: name=* state=latest
     become: true
@@ -32,6 +63,10 @@
       pkg:
       - thunderbird
       - sshfs
+      - curlftpfs
+      - curl
+      - wget
+      - davfs2
       - filezilla
       - snapd
       - git
@@ -44,6 +79,7 @@
       - qrencode
       - pidgin
       - telegram-desktop 
+      - proftpd
     become: true
     become_user: root
     when: ansible_distribution == 'Ubuntu'
