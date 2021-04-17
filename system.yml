@@ -80,6 +80,19 @@
       - pidgin
       - telegram-desktop 
       - proftpd
+      - libreoffice-base
+      - libreoffice-math
+      - knights
+      - odbcinst1debian2
+      - odbcinst
+      - libodbc1
+      - sqlite3
+      - cheese
+      - vokoscreen
+      - kdenlive
+      - glabels
+      - audio-recorde
+      - hplib
     become: true
     become_user: root
     when: ansible_distribution == 'Ubuntu'
@@ -99,3 +112,11 @@
     become: true
     become_user: root
     when: ansible_distribution == 'Ubuntu'
+
+  - name: Install Apache @ludwig
+    apt:
+      pkg: 
+      - apache2
+    become: true
+    become_user: root
+    when: "{{ inventory_hostname == 'ludwig' }}"

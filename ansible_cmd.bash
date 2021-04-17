@@ -6,5 +6,5 @@
 
 cd /home/ansible/cmdb
 ansible -m setup -i /etc/ansible/hosts --tree out/ all
-ansible-cmdb /home/ansible/cmdb/out > /home/ansible/cmdb/out/index.html
+ansible-cmdb out/  > /home/ansible/cmdb/out/index.html
 sudo cp /home/ansible/cmdb/out/index.html /var/www/html/index.html
