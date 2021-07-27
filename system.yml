@@ -122,7 +122,7 @@
         - ao
         - skype
         - spotify
-	- code
+        - code
     become: true
     become_user: root
     when: ansible_distribution == 'Ubuntu'
